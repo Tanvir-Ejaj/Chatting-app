@@ -1,0 +1,115 @@
+.groups-main {
+  margin-top: 30px;
+  background: #ffffff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.group-body::-webkit-scrollbar {
+  width: 0.5vw;
+  overflow: hidden;
+}
+
+.group-body::-webkit-scrollbar-thumb {
+  background: #3e54ac;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.group-body::-webkit-scrollbar-track {
+  height: 100%;
+  /* background: #d1d6e1; */
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.header h3 {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--third-color);
+  padding: 20px;
+}
+
+.group-body {
+  height: 370px;
+  overflow: auto;
+  padding: 0 20px;
+}
+
+.group-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.group-inner:last-child {
+  border: none;
+}
+
+.group-pics {
+  height: 90px;
+  width: 90px;
+  overflow: hidden;
+}
+
+.group-pics img {
+  width: 100%;
+}
+
+.group-text {
+  width: 50%;
+}
+
+.group-text h3 {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--third-color);
+}
+
+.group-text p {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(77, 77, 77, 0.75);
+}
+
+.group-btn {
+  width: 20%;
+}
+
+.group-btn button {
+  width: 100%;
+  padding: 10px 20px;
+  background: var(--blue);
+  outline: none;
+  border: 0;
+  color: #ffffff;
+  font-family: var(--third-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.group-btn button:hover {
+  background: var(--blue);
+}

@@ -1,0 +1,151 @@
+.login-main {
+  height: 100vh;
+  align-items: center;
+}
+
+.login-right{
+  width: 70%;
+}
+
+.avater {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.avater img {
+  width: 100px;
+}
+
+.login-right h3 {
+  font-size: 34px;
+  font-weight: 700;
+  font-family: var(--third-font);
+  color: var(--primary-color);
+  line-height: 47px;
+  text-align: center;
+}
+
+.login-right h6 {
+  font-family: var(--third-font);
+  font-weight: 400;
+  font-size: 20.6406px;
+  line-height: 28px;
+  color: var(--secondary-color);
+  opacity: 0.5;
+  margin-bottom: 37px;
+  text-align: center;
+}
+
+.login-right .input {
+  width: 100% !important;
+}
+
+.password-box {
+  position: relative;
+}
+
+.login-right .eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.login-right .btn {
+  padding: 20px 0 !important;
+  width: 100% !important;
+  border-radius: 50px !important;
+  -webkit-border-radius: 50px !important;
+  -moz-border-radius: 50px !important;
+  -ms-border-radius: 50px !important;
+  -o-border-radius: 50px !important;
+  font-family: var(--third-font) !important;
+  font-style: normal;
+  font-weight: 600 !important;
+  font-size: 20.6406px !important;
+  line-height: 28px !important;
+  margin-top: 51px !important;
+  margin-bottom: 35px !important;
+}
+
+.login-right h6 {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13.3376px;
+  line-height: 18px;
+  color: var(--primary-color);
+}
+
+.login-right h6 a {
+  color: var(--error) !important;
+  padding-left: 5px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+.regi-pic {
+  width: 100%;
+}
+
+.auth-main {
+  display: flex;
+  align-items: center;
+  width: 33%;
+  border: 0.833602px solid #03014c43;
+  border-radius: 8.33602px;
+  padding: 20px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.auth-icon{
+  font-size: 15px;
+  text-align: center;
+  width: 10%;
+}
+
+.auth-text{
+  width: 90%;
+}
+
+.auth-text h3{
+  padding-left: 5px;
+  font-family: var(--secondary-font);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  color: #03014c;
+}
+
+.auth-wraper{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.forget{
+  margin-top: 20px;
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13.3376px;
+  line-height: 18px;
+  color: var(--primary-color);
+}
+
+.forget a{
+  color: var(--error) !important;
+  padding-left: 5px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}

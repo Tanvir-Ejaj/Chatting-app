@@ -1,0 +1,104 @@
+.friends-main {
+  background: #ffffff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.friends-body {
+  height: 47vh;
+  overflow: auto;
+  padding: 0 20px;
+}
+
+.friends-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.friends-inner:last-child {
+  border: none;
+}
+
+.friends-pics {
+  height: 70px;
+  width: 70px;
+  overflow: hidden;
+}
+
+.friends-pics img {
+  width: 100%;
+}
+
+.friends-text {
+  width: 50%;
+}
+
+.friends-text h3 {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--third-color);
+}
+
+.friends-text p {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(77, 77, 77, 0.75);
+}
+
+.friends-btn {
+  width: 25%;
+}
+
+.friends-btn button {
+  width: 100%;
+  padding: 10px 20px;
+  background: red;
+  outline: none;
+  border: 0;
+  color: #ffffff;
+  font-family: var(--third-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.friends-btn button:hover{
+    background: red;
+}
+
+.friends-body::-webkit-scrollbar {
+  width: 0.5vw;
+  overflow: hidden;
+}
+
+.friends-body::-webkit-scrollbar-thumb {
+  background: #3e54ac;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.friends-body::-webkit-scrollbar-track {
+  height: 100%;
+  /* background: #d1d6e1; */
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

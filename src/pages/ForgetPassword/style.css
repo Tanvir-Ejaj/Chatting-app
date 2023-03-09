@@ -1,0 +1,46 @@
+.forget-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.forget-inner {
+  width: 650px;
+  padding: 30px 40px;
+  background: #f2efef;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.forget-inner h3{
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 30px;
+    font-weight: 400;
+    font-family: var(--third-font);
+    margin-bottom: 20px;
+}
+
+.forget-body form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.forget-body button{
+  padding: 15px 0;
+  width: 30%;
+  background: var(--primary-color);
+}
+
+.forget-body .input{
+  width: 65% !important;
+}
+
+

@@ -1,0 +1,10 @@
+.home-inner {
+  padding: 0 25px;
+}
+
+.home-main {
+  box-sizing: border-box;
+  margin: 20px 0 0 0;
+  background: #ffffff;
+  /* box-shadow: 0px 0px 89px 19px rgba(0, 0, 0, 0.04); */
+}

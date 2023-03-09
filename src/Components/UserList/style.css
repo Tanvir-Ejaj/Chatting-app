@@ -1,0 +1,105 @@
+.user-list-main {
+  background: #ffffff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.user-list-body {
+  height: 47vh;
+  overflow: auto;
+  padding: 0 20px;
+}
+
+.user-list-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.user-list-inner:last-child {
+  border: none;
+}
+
+.user-list-pics {
+  height: 70px;
+  width: 70px;
+  overflow: hidden;
+}
+
+.user-list-pics img {
+  width: 100%;
+}
+
+.user-list-text {
+  width: 50%;
+}
+
+.user-list-text h3 {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--third-color);
+}
+
+.user-list-text p {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(77, 77, 77, 0.75);
+}
+
+.user-list-btn {
+  width: 25%;
+}
+
+.user-list-btn button {
+  /* width: 100%; */
+  padding: 10px 15px;
+  background: var(--blue);
+  outline: none;
+  border: 0;
+}
+
+.user-list-btn button svg{
+    height: 20px;
+    width: 20px;
+    stroke: #ffffff !important;
+}
+
+.user-list-btn button:hover {
+  background: var(--blue);
+}
+
+.user-list-body::-webkit-scrollbar {
+  width: 0.5vw;
+  overflow: hidden;
+}
+
+.user-list-body::-webkit-scrollbar-thumb {
+  background: #3e54ac;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.user-list-body::-webkit-scrollbar-track {
+  height: 100%;
+  /* background: #d1d6e1; */
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

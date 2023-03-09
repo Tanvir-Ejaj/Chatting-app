@@ -20,9 +20,9 @@ const UploadProfile = ({ setOpen }) => {
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
   const storage = getStorage();
-  const storageRef = ref(storage, "some-child");
   const dispatch = useDispatch();
   const user = useSelector((user) => user.loginSlice.login);
+  const storageRef = ref(storage, user.uid);
 
   const handleUploadProfile = (e) => {
     e.preventDefault();

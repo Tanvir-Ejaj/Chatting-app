@@ -25,51 +25,6 @@ const FriendRequest = () => {
               <Button>Reject</Button>
             </div>
           </div>
-          <div className="friend-request-inner">
-            <div className="friend-request-pics">
-              <picture>
-                <img src="./images/avatar.png" alt="prfile-pic" />
-              </picture>
-            </div>
-            <div className="friend-request-text">
-              <h3>Friends Reunion</h3>
-              <p>Hi Guys, Wassup!</p>
-            </div>
-            <div className="friend-request-btn">
-              <Button>Accept</Button>
-              <Button>Reject</Button>
-            </div>
-          </div>
-          <div className="friend-request-inner">
-            <div className="friend-request-pics">
-              <picture>
-                <img src="./images/avatar.png" alt="prfile-pic" />
-              </picture>
-            </div>
-            <div className="friend-request-text">
-              <h3>Friends Reunion</h3>
-              <p>Hi Guys, Wassup!</p>
-            </div>
-            <div className="friend-request-btn">
-              <Button>Accept</Button>
-              <Button>Reject</Button>
-            </div>
-          </div>
-          <div className="friend-request-inner">
-            <div className="friend-request-pics">
-              <picture>
-                <img src="./images/avatar.png" alt="prfile-pic" />
-              </picture>
-            </div>
-            <div className="friend-request-text">
-              <h3>Friends Reunion</h3>
-              <p>Hi Guys, Wassup!</p>
-            </div>
-            <div className="friend-request-btn">
-              <Button>Accept</Button>
-              <Button>Reject</Button>
-            </div>
-          </div>
         </div>
       </div>
     </>

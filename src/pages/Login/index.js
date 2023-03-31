@@ -184,7 +184,7 @@ const Login = () => {
                   <AiFillGithub />
                 </div>
                 <div className="auth-text">
-                  <h3>Login With Microsoft</h3>
+                  <h3>Login With GitHub</h3>
                 </div>
               </div>
             </div>

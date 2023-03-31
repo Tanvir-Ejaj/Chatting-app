@@ -2,21 +2,31 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import Button from "@mui/material/Button";
 import { IoMdAdd } from "react-icons/io";
-import { getDatabase, ref, onValue, set, push } from "firebase/database";
+import { HiXMark } from "react-icons/hi2";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  push,
+  remove,
+} from "firebase/database";
 import { useSelector } from "react-redux";
 
 const UserList = () => {
   const [userlists, setUserlists] = useState([]);
   const db = getDatabase();
   const user = useSelector((users) => users.loginSlice.login);
-
+  const [friendReq, setFriendReq] = useState([]);
 
   useEffect(() => {
     const starCountRef = ref(db, "users/");
     onValue(starCountRef, (snapshot) => {
       const userArray = [];
       snapshot.forEach((userlists) => {
-        userArray.push({ ...userlists.val(), id: userlists.key });
+        if (user.uid !== userlists.key) {
+          userArray.push({ ...userlists.val(), id: userlists.key });
+        }
       });
       setUserlists(userArray);
     });
@@ -32,6 +42,24 @@ const UserList = () => {
       receiverid: item.id,
     });
   };
+
+  // Show Friend Request
+
+  useEffect(() => {
+    const starCountRef = ref(db, "friendrequest/");
+    onValue(starCountRef, (snapshot) => {
+      let reqArray = [];
+      snapshot.forEach((item) => {
+        reqArray.push({...item.val().receiverid + item.val().senderid , id : item.key});
+      });
+      setFriendReq(reqArray);
+    });
+  }, []);
+
+  const handleDeleteReq = (data) => {
+    remove(ref(db, "friendrequest/" + data.id));
+  };
+
   return (
     <>
       <div className="user-list-main">
@@ -49,13 +77,23 @@ const UserList = () => {
               <div className="user-list-text">
                 <h3>{item.username}</h3>
               </div>
-              <div
-                className="user-list-btn"
-                onClick={() => handleReqSend(item)}
-              >
-                <Button variant="contained">
-                  <IoMdAdd />
-                </Button>
+              <div className="user-list-btn">
+                {friendReq.includes(item.id + user.uid) ||
+                friendReq.includes(user.uid + item.id) ? (
+                  <Button
+                    variant="contained"
+                    onClick={() => handleDeleteReq(item)}
+                  >
+                    <HiXMark />
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    onClick={() => handleReqSend(item)}
+                  >
+                    <IoMdAdd />
+                  </Button>
+                )}
               </div>
             </div>
           ))}

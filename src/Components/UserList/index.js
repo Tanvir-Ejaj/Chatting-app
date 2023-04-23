@@ -18,6 +18,7 @@ const UserList = () => {
   const db = getDatabase();
   const user = useSelector((users) => users.loginSlice.login);
   const [friendReq, setFriendReq] = useState([]);
+  const [friendlist, setFriendlist] = useState([]);
 
   useEffect(() => {
     const starCountRef = ref(db, "users/");
@@ -50,15 +51,30 @@ const UserList = () => {
     onValue(starCountRef, (snapshot) => {
       let reqArray = [];
       snapshot.forEach((item) => {
-        reqArray.push({...item.val().receiverid + item.val().senderid , id : item.key});
+        reqArray.push(item.val().receiverid + item.val().senderid);
       });
       setFriendReq(reqArray);
     });
   }, []);
 
+  // Delete Friend
+
   const handleDeleteReq = (data) => {
     remove(ref(db, "friendrequest/" + data.id));
   };
+
+  // Friendlist Show
+
+  useEffect(() => {
+    const starCountRef = ref(db, "friends");
+    onValue(starCountRef, (snapshot) => {
+      let friendArray = [];
+      snapshot.forEach((item) => {
+        friendArray.push(item.val().receiverid + item.val().senderid);
+      });
+      setFriendlist(friendArray);
+    });
+  }, []);
 
   return (
     <>
@@ -78,8 +94,13 @@ const UserList = () => {
                 <h3>{item.username}</h3>
               </div>
               <div className="user-list-btn">
-                {friendReq.includes(item.id + user.uid) ||
-                friendReq.includes(user.uid + item.id) ? (
+                {friendlist.includes(item.id + user.uid) ||
+                friendlist.includes(user.uid + item.id) ? (
+                  <Button variant="contained" disabled>
+                    Friends
+                  </Button>
+                ) : friendReq.includes(item.id + user.uid) ||
+                  friendReq.includes(user.uid + item.id) ? (
                   <Button
                     variant="contained"
                     onClick={() => handleDeleteReq(item)}

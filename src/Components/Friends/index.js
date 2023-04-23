@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Button from "@mui/material/Button";
+import { getDatabase, onValue, ref } from "firebase/database";
+import { useSelector } from "react-redux";
 
 const Friends = () => {
+  const db = getDatabase();
+  const [friendlist, setFriendlist] = useState([]);
+  const user = useSelector((users) => users.loginSlice.login);
+
+  // Show in friend list
+  useEffect(() => {
+    const starCountRef = ref(db, "friends");
+    onValue(starCountRef, (snapshot) => {
+      let friendArray = [];
+      snapshot.forEach((item) => {
+        friendArray.push(item.val());
+      });
+      setFriendlist(friendArray);
+    });
+  }, []);
   return (
     <>
       <div className="friends-main">
@@ -10,84 +27,26 @@ const Friends = () => {
           <h3>Friends</h3>
         </div>
         <div className="friends-body">
-          <div className="friends-inner">
-            <div className="friends-pics">
-              <picture>
-                <img src="./images/profile-pic.png" alt="friend-pic" />
-              </picture>
+          {friendlist.map((item, i) => (
+            <div className="friends-inner" key={i}>
+              <div className="friends-pics">
+                <picture>
+                  <img src="./images/profile-pic.png" alt="friend-pic" />
+                </picture>
+              </div>
+              <div className="friends-text">
+                <h3>
+                  {user.uid === item.senderid
+                    ? item.receivername
+                    : item.sendername}
+                </h3>
+              </div>
+              <div className="friends-btn">
+                <Button variant="contained">Block</Button>
+                <Button variant="contained">Unfriend</Button>
+              </div>
             </div>
-            <div className="friends-text">
-              <h3>Raghav</h3>
-            </div>
-            <div className="friends-btn">
-              <Button variant="contained">Block</Button>
-            </div>
-          </div>
-          <div className="friends-inner">
-            <div className="friends-pics">
-              <picture>
-                <img src="./images/profile-pic.png" alt="friend-pic" />
-              </picture>
-            </div>
-            <div className="friends-text">
-              <h3>Raghav</h3>
-            </div>
-            <div className="friends-btn">
-              <Button variant="contained">Block</Button>
-            </div>
-          </div>
-          <div className="friends-inner">
-            <div className="friends-pics">
-              <picture>
-                <img src="./images/profile-pic.png" alt="friend-pic" />
-              </picture>
-            </div>
-            <div className="friends-text">
-              <h3>Raghav</h3>
-            </div>
-            <div className="friends-btn">
-              <Button variant="contained">Block</Button>
-            </div>
-          </div>
-          <div className="friends-inner">
-            <div className="friends-pics">
-              <picture>
-                <img src="./images/profile-pic.png" alt="friend-pic" />
-              </picture>
-            </div>
-            <div className="friends-text">
-              <h3>Raghav</h3>
-            </div>
-            <div className="friends-btn">
-              <Button variant="contained">Block</Button>
-            </div>
-          </div>
-          <div className="friends-inner">
-            <div className="friends-pics">
-              <picture>
-                <img src="./images/profile-pic.png" alt="friend-pic" />
-              </picture>
-            </div>
-            <div className="friends-text">
-              <h3>Raghav</h3>
-            </div>
-            <div className="friends-btn">
-              <Button variant="contained">Block</Button>
-            </div>
-          </div>
-          <div className="friends-inner">
-            <div className="friends-pics">
-              <picture>
-                <img src="./images/profile-pic.png" alt="friend-pic" />
-              </picture>
-            </div>
-            <div className="friends-text">
-              <h3>Raghav</h3>
-            </div>
-            <div className="friends-btn">
-              <Button variant="contained">Block</Button>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>

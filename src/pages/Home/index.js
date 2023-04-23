@@ -24,7 +24,7 @@ const Home = () => {
             <FriendRequest />
           </div>
         </Grid>
-        <Grid item xs={3} className="home-inner">
+        <Grid item xs={4} className="home-inner">
           <div className="friends">
             <Friends />
           </div>
@@ -32,7 +32,7 @@ const Home = () => {
             <MyGroups />
           </div>
         </Grid>
-        <Grid item xs={3} className="home-inner">
+        <Grid item xs={4} className="home-inner">
           <div className="Userlist-main">
             <UserList />
           </div>

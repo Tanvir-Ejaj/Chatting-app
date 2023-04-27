@@ -10,12 +10,14 @@ import {
   set,
 } from "firebase/database";
 import { useSelector } from "react-redux";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 
 const MyGroups = () => {
   const db = getDatabase();
   const user = useSelector((users) => users.loginSlice.login);
   const [grouplist, setGroupList] = useState([]);
+  const [show, setShow] = useState(false);
+  const [groupreqlist, setGroupReqList] = useState([]);
 
   // Show Created Group List
 
@@ -31,6 +33,42 @@ const MyGroups = () => {
       setGroupList(groupArray);
     });
   }, []);
+
+  // Request Show
+
+  const handleReqShow = (gitem) => {
+    const starCountRef = ref(db, "grouprequest");
+    onValue(starCountRef, (snapshot) => {
+      let groupreqarray = [];
+      snapshot.forEach((item) => {
+        if (
+          item.val().adminid === user.uid &&
+          item.val().groupid === gitem.id
+        ) {
+          groupreqarray.push({ ...item.val(), id: item.key });
+        }
+      });
+      setGroupReqList(groupreqarray);
+    });
+    setShow(true);
+  };
+
+  // Accept Group Request
+
+  const handleAccept = (item) => {
+    set(push(ref(db, "groupmember")), {
+      adminid: item.adminid,
+      groupid: item.groupid,
+      userid: item.userid,
+      admin: item.admin,
+      username: item.username,
+      groupname: item.groupname,
+    }).then(() => {
+      remove(ref(db, "grouprequest/" + item.id));
+    });
+  };
+
+  const handleDelete = (item) => remove(ref(db, "grouprequest/" + item.id));
   return (
     <>
       <div className="my-groups-main">
@@ -38,10 +76,49 @@ const MyGroups = () => {
           <h3>My Groups</h3>
         </div>
         <div className="my-groups-body">
+          {show && (
+            <Button variant="outlined" onClick={() => setShow(false)}>
+              Back
+            </Button>
+          )}
           {grouplist.length === 0 ? (
             <Alert className="alert_1" severity="error">
               You didn't create any group.
             </Alert>
+          ) : show ? (
+            groupreqlist.length === 0 ? (
+              <Alert className="alert_1" severity="error">
+                You Don't Have Any Requsest
+              </Alert>
+            ) : (
+              groupreqlist.map((item, i) => (
+                <div className="my-groups-inner" key={i}>
+                  <div className="my-groups-pics">
+                    <picture>
+                      <img src="./images/profile-pic.png" alt="friend-pic" />
+                    </picture>
+                  </div>
+                  <div className="my-groups-text">
+                    <h3>{item.username}</h3>
+                  </div>
+                  <div className="my-groups-btn">
+                    <Button
+                      variant="contained"
+                      onClick={() => handleAccept(item)}
+                    >
+                      Accept
+                    </Button>
+                    <Button
+                      className="reject-btn"
+                      variant="contained"
+                      onClick={() => handleDelete(item)}
+                    >
+                      Reject
+                    </Button>
+                  </div>
+                </div>
+              ))
+            )
           ) : (
             grouplist.map((item, i) => (
               <div className="my-groups-inner" key={i}>
@@ -62,7 +139,12 @@ const MyGroups = () => {
                 </div>
                 <div className="my-groups-btn">
                   <Button variant="contained">Info</Button>
-                  <Button variant="contained">Requests</Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => handleReqShow(item)}
+                  >
+                    Requests
+                  </Button>
                 </div>
               </div>
             ))

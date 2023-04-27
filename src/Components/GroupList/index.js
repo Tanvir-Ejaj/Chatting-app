@@ -72,6 +72,20 @@ const Groups = () => {
     });
   }, []);
 
+  // Join Group
+
+  const handleJoin = (item) => {
+    set(push(ref(db, "grouprequest")), {
+      groupid: item.id,
+      groupname: item.groupname,
+      grouptag: item.grouptag,
+      admin: item.adminname,
+      adminid: item.adminid,
+      userid: user.uid,
+      username: user.displayName,
+    });
+  };
+
   return (
     <>
       <ToastContainer />
@@ -102,7 +116,7 @@ const Groups = () => {
                   <p>{item.grouptag}</p>
                 </div>
                 <div className="group-btn">
-                  <Button>Join</Button>
+                  <Button onClick={() => handleJoin(item)}>Join</Button>
                 </div>
               </div>
             ))

@@ -19,6 +19,9 @@ const UserList = () => {
   const user = useSelector((users) => users.loginSlice.login);
   const [friendReq, setFriendReq] = useState([]);
   const [friendlist, setFriendlist] = useState([]);
+  // const [cancelReq, setCancelReq] = useState([]);
+
+  // Userlist Show
 
   useEffect(() => {
     const starCountRef = ref(db, "users/");
@@ -61,6 +64,7 @@ const UserList = () => {
 
   const handleDeleteReq = (data) => {
     remove(ref(db, "friendrequest/" + data.id));
+    console.log(data);
   };
 
   // Friendlist Show

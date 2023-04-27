@@ -113,3 +113,18 @@
 .group-btn button:hover {
   background: var(--blue);
 }
+
+.groups-main .header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grp_create_btn{
+  margin-right: 20px;
+}
+
+.group_btn{
+  margin: 10px 0 !important;
+  padding: 10px 15px !important;
+}

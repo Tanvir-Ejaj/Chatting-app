@@ -50,7 +50,7 @@ const UserList = () => {
   // Show Friend Request
 
   useEffect(() => {
-    const starCountRef = ref(db, "friendrequest/");
+    const starCountRef = ref(db, "friendrequest");
     onValue(starCountRef, (snapshot) => {
       let reqArray = [];
       snapshot.forEach((item) => {
@@ -59,13 +59,6 @@ const UserList = () => {
       setFriendReq(reqArray);
     });
   }, []);
-
-  // Delete Friend
-
-  const handleDeleteReq = (data) => {
-    remove(ref(db, "friendrequest/" + data.id));
-    console.log(data);
-  };
 
   // Friendlist Show
 
@@ -79,6 +72,12 @@ const UserList = () => {
       setFriendlist(friendArray);
     });
   }, []);
+
+  // Delete Friend
+
+  const handleDeleteReq = (item) => {
+    remove(ref(db, "friendrequest/" + item.id));
+  };
 
   return (
     <>

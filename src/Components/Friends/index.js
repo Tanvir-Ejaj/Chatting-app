@@ -53,6 +53,12 @@ const Friends = () => {
     }
   };
 
+  // Unfriend Friend
+
+  const handleUnfriend = (item) => {
+    remove(ref(db, "friends/" + item.id));
+  };
+
   return (
     <>
       <div className="friends-main">
@@ -78,7 +84,12 @@ const Friends = () => {
                 <Button variant="contained" onClick={() => handleBlock(item)}>
                   Block
                 </Button>
-                <Button variant="contained">Unfriend</Button>
+                <Button
+                  variant="contained"
+                  onClick={() => handleUnfriend(item)}
+                >
+                  Unfriend
+                </Button>
               </div>
             </div>
           ))}

@@ -57,14 +57,14 @@ const Groups = () => {
     });
   };
 
-  // For all created grouplist
+  // For all created grouplist Show
 
   useEffect(() => {
     const starCountRef = ref(db, "groups/");
     onValue(starCountRef, (snapshot) => {
       let groupArray = [];
       snapshot.forEach((grouplist) => {
-        if (grouplist.val().adminid != user.uid) {
+        if (grouplist.val().adminid !== user.uid) {
           groupArray.push({ ...grouplist.val(), id: grouplist.key });
         }
       });

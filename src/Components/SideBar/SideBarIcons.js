@@ -5,20 +5,21 @@ import {
   AiOutlineBell,
   AiFillSetting,
 } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 
 const SideBarIcons = () => {
   return (
     <div className="icons-main">
-      <div className="icons-inner">
+      <NavLink className="icons-inner" to="/">
         <AiOutlineHome />
-      </div>
-      <div className="icons-inner">
+      </NavLink>
+      <NavLink className="icons-inner" to="/message">
         <AiOutlineMessage />
-      </div>
-      <div className="icons-inner">
+      </NavLink>
+      <div className="icons-inner" to="/">
         <AiOutlineBell />
       </div>
-      <div className="icons-inner">
+      <div className="icons-inner" to="/">
         <AiFillSetting />
       </div>
     </div>

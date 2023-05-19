@@ -12,6 +12,7 @@ import LoggedIn from "./PrivateRouter/LoggedInUser";
 import NotLoggedIn from "./PrivateRouter/NotLoggedIn";
 import ForgetPass from "./pages/ForgetPassword/index";
 import RootLayout from "./Layout";
+import Message from "./pages/Message";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ function App() {
         <Route element={<LoggedIn />}>
           <Route element={<RootLayout />}>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/message" element={<Message />}></Route>
           </Route>
         </Route>
         <Route element={<NotLoggedIn />}>

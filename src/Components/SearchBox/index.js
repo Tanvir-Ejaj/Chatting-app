@@ -1,16 +1,16 @@
 import React from "react";
 import "./style.css";
-import { BsSearch } from 'react-icons/bs';
+import { BsSearch } from "react-icons/bs";
 
 const SearchBox = () => {
   return (
     <>
       <div className="search-wrapper">
         <div className="search-icon">
-            <BsSearch />
+          <BsSearch />
         </div>
         <div className="search-input">
-            <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" />
         </div>
       </div>
     </>

@@ -10,6 +10,7 @@ import {
   set,
 } from "firebase/database";
 import { useSelector } from "react-redux";
+import SearchBox from "../SearchBox";
 
 const Friends = () => {
   const db = getDatabase();
@@ -64,6 +65,9 @@ const Friends = () => {
       <div className="friends-main">
         <div className="header">
           <h3>Friends</h3>
+        </div>
+        <div className="search_box">
+          <SearchBox />
         </div>
         <div className="friends-body">
           {friendlist.map((item, i) => (

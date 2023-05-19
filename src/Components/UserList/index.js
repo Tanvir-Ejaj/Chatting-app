@@ -12,6 +12,7 @@ import {
   remove,
 } from "firebase/database";
 import { useSelector } from "react-redux";
+import { BsSearch } from "react-icons/bs";
 
 const UserList = () => {
   const [userlists, setUserlists] = useState([]);
@@ -19,7 +20,7 @@ const UserList = () => {
   const user = useSelector((users) => users.loginSlice.login);
   const [friendReq, setFriendReq] = useState([]);
   const [friendlist, setFriendlist] = useState([]);
-  // const [cancelReq, setCancelReq] = useState([]);
+  const [filterUser, setFilterUser] = useState([]);
 
   // Userlist Show
 
@@ -79,14 +80,110 @@ const UserList = () => {
     remove(ref(db, "friendrequest/" + item.id));
   };
 
+  // Search
+
+  const handleSearch = (e) => {
+    let arr = [];
+    if (e.target.value.length === 0) {
+      setFilterUser([]);
+    }
+    userlists.filter((item) => {
+      if (item.username.toLowerCase().includes(e.target.value.toLowerCase())) {
+        arr.push(item);
+        setFilterUser(arr);
+      }
+    });
+  };
+
   return (
     <>
       <div className="user-list-main">
         <div className="header">
           <h3>User List</h3>
         </div>
+        <div className="search_box">
+          <div className="search-wrapper">
+            <div className="search-icon">
+              <BsSearch />
+            </div>
+            <div className="search-input">
+              <input type="text" placeholder="Search" onChange={handleSearch} />
+            </div>
+          </div>
+        </div>
         <div className="user-list-body">
-          {userlists.map((item, i) => (
+          {filterUser.length > 0
+            ? filterUser.map((item, i) => (
+                <div key={i} className="user-list-inner">
+                  <div className="user-list-pics">
+                    <picture>
+                      <img src="./images/profile-pic.png" alt="friend-pic" />
+                    </picture>
+                  </div>
+                  <div className="user-list-text">
+                    <h3>{item.username}</h3>
+                  </div>
+                  <div className="user-list-btn">
+                    {friendlist.includes(item.id + user.uid) ||
+                    friendlist.includes(user.uid + item.id) ? (
+                      <Button variant="contained" disabled>
+                        Friends
+                      </Button>
+                    ) : friendReq.includes(item.id + user.uid) ||
+                      friendReq.includes(user.uid + item.id) ? (
+                      <Button
+                        variant="contained"
+                        onClick={() => handleDeleteReq(item)}
+                      >
+                        <HiXMark />
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        onClick={() => handleReqSend(item)}
+                      >
+                        <IoMdAdd />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              ))
+            : userlists.map((item, i) => (
+                <div key={i} className="user-list-inner">
+                  <div className="user-list-pics">
+                    <picture>
+                      <img src="./images/profile-pic.png" alt="friend-pic" />
+                    </picture>
+                  </div>
+                  <div className="user-list-text">
+                    <h3>{item.username}</h3>
+                  </div>
+                  <div className="user-list-btn">
+                    {friendlist.includes(item.id + user.uid) ||
+                    friendlist.includes(user.uid + item.id) ? (
+                      <Button variant="contained" disabled>
+                        Friends
+                      </Button>
+                    ) : friendReq.includes(item.id + user.uid) ||
+                      friendReq.includes(user.uid + item.id) ? (
+                      <Button
+                        variant="contained"
+                        onClick={() => handleDeleteReq(item)}
+                      >
+                        <HiXMark />
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        onClick={() => handleReqSend(item)}
+                      >
+                        <IoMdAdd />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              ))}
+          {/* {userlists.map((item, i) => (
             <div key={i} className="user-list-inner">
               <div className="user-list-pics">
                 <picture>
@@ -120,7 +217,7 @@ const UserList = () => {
                 )}
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </>

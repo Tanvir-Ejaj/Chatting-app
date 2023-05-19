@@ -11,12 +11,15 @@ import {
 } from "firebase/database";
 import { useSelector } from "react-redux";
 import Alert from "@mui/material/Alert";
+import SearchBox from "../SearchBox";
 
 const MyGroups = () => {
   const db = getDatabase();
   const user = useSelector((users) => users.loginSlice.login);
   const [grouplist, setGroupList] = useState([]);
   const [show, setShow] = useState(false);
+  const [groupMember, setGroupMember] = useState([]);
+  const [member, setMember] = useState(false);
   const [groupreqlist, setGroupReqList] = useState([]);
 
   // Show Created Group List
@@ -69,15 +72,53 @@ const MyGroups = () => {
   };
 
   const handleDelete = (item) => remove(ref(db, "grouprequest/" + item.id));
+
+  // Group Member Show
+
+  const handleInfo = (groupmember) => {
+    setMember(true);
+    const starCountRef = ref(db, "groupmember/");
+    onValue(starCountRef, (snapshot) => {
+      let memberArray = [];
+      snapshot.forEach((item) => {
+        if (
+          user.uid == groupmember.adminid &&
+          groupmember.id == item.val().groupid
+        ) {
+          memberArray.push({ ...item.val(), id: item.key });
+        }
+      });
+      setGroupMember(memberArray);
+    });
+  };
+
+  // Remove User From The group
+
+  const handleRemove = (item) => {
+    remove(ref(db, "groupmember/" + item.id));
+  };
+
+  const handleSearch = (e)=>{
+    
+  }
+
   return (
     <>
       <div className="my-groups-main">
         <div className="header">
           <h3>My Groups</h3>
         </div>
+        <div className="search_box">
+          <SearchBox onChange={handleSearch}/>
+        </div>
         <div className="my-groups-body">
           {show && (
             <Button variant="outlined" onClick={() => setShow(false)}>
+              Back
+            </Button>
+          )}
+          {member && (
+            <Button variant="outlined" onClick={() => setMember(false)}>
               Back
             </Button>
           )}
@@ -119,6 +160,27 @@ const MyGroups = () => {
                 </div>
               ))
             )
+          ) : member ? (
+            groupMember.map((item, i) => (
+              <div className="my-groups-inner" key={i}>
+                <div className="my-groups-pics">
+                  <picture>
+                    <img src="./images/profile-pic.png" alt="friend-pic" />
+                  </picture>
+                </div>
+                <div className="my-groups-text">
+                  <h3>{item.username}</h3>
+                </div>
+                <div className="my-groups-btn">
+                  <Button
+                    variant="contained"
+                    onClick={() => handleRemove(item)}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </div>
+            ))
           ) : (
             grouplist.map((item, i) => (
               <div className="my-groups-inner" key={i}>
@@ -138,7 +200,9 @@ const MyGroups = () => {
                   </h4>
                 </div>
                 <div className="my-groups-btn">
-                  <Button variant="contained">Info</Button>
+                  <Button variant="contained" onClick={() => handleInfo(item)}>
+                    Info
+                  </Button>
                   <Button
                     variant="contained"
                     onClick={() => handleReqShow(item)}

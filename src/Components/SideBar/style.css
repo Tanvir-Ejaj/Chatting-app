@@ -65,13 +65,16 @@
 
 .icons-inner {
   margin: 50px 0;
-  position: relative;
   z-index: 1;
   display: flex;
   justify-content: center;
 }
 
-.icons-inner::after {
+.icons-inner.active{
+  position: relative;
+}
+
+.icons-inner.active::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -85,12 +88,12 @@
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  opacity: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  opacity: 1;
 }
 
-.icons-inner::before {
+.icons-inner.active::before {
   position: absolute;
   content: "";
   top: 50%;
@@ -105,7 +108,11 @@
   -o-transform: translateY(-50%);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  opacity: 0;
+  opacity: 1;
+}
+
+.icons-inner.active svg path{
+  fill: var(--blue);
 }
 
 .icons-inner svg {
@@ -114,7 +121,6 @@
 }
 
 .icons-inner svg path {
-  /* fill: var(--blue); */
   fill: #fff;
 }
 
